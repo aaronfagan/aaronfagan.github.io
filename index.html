@@ -25,9 +25,7 @@
           </section>
           <section class="container">
             <h1>Recurring Donation</h1>
-            <button data-plan-id="plan_GU4MXg0k0Uv1S6">
-              Donate $20.00 per month
-            </button>
+            <button data-plan-id="plan_GU4MXg0k0Uv1S6">Donate $20.00 per month</button>
           </section>
         </div>
         <div id="error-message"></div>
@@ -36,19 +34,8 @@
 
 
     <script>
-      // Replace with your own publishable key: https://dashboard.stripe.com/test/apikeys
-      var PUBLISHABLE_KEY = "pk_test_Tr8olTkdFnnJVywwhNPHwnHK00HkHV4tnP";
-      // Replace with the domain you want your users to be redirected back to after payment
+      var stripe = Stripe('pk_live_rQWTrxNUl442BfEyf0DoC7Fy00hIkiGnEu');
       var DOMAIN = location.href.replace(/[^/]*$/, "");
-
-      if (PUBLISHABLE_KEY === "pk_test_Tr8olTkdFnnJVywwhNPHwnHK00HkHV4tnP") {
-        console.log(
-          "Replace the hardcoded publishable key with your own publishable key: https://dashboard.stripe.com/test/apikeys"
-        );
-      }
-
-      var stripe = Stripe(PUBLISHABLE_KEY);
-
       // Handle any errors from Checkout
       var handleResult = function(result) {
         if (result.error) {
