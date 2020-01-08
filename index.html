@@ -4,7 +4,13 @@
     <meta charset="utf-8" />
     <title>Stripe Payment Page Recipe</title>
     <meta name="description" content="A demo of Stripe Payment Intents" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.aaronfagan.ca/img/icons/favicon-32px.png?v=<?php echo $s['cdn']['time']; ?>">
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.aaronfagan.ca/img/icons/favicon-iphone.png?v=<?php echo $s['cdn']['time']; ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://cdn.aaronfagan.ca/img/icons/favicon-iphone@2x.png?v=<?php echo $s['cdn']['time']; ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://cdn.aaronfagan.ca/img/icons/favicon-ipad.png?v=<?php echo $s['cdn']['time']; ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://cdn.aaronfagan.ca/img/icons/favicon-ipad@2x.png?v=<?php echo $s['cdn']['time']; ?>">
+    <meta name="msapplication-TileImage" wrap="https://cdn.aaronfagan.ca/img/icons/favicon-ipad@2x.png?v=<?php echo $s['cdn']['time']; ?>">
+    <meta name="msapplication-TileColor" wrap="#ffffff">
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/global.css" />
     <script src="https://js.stripe.com/v3/"></script>
@@ -14,7 +20,7 @@
     <div class="sr-root">
       <div class="sr-main" style="display: flex;">
         <header class="sr-header">
-          <div class="sr-header__logo"></div>
+          <img src="https://cdn.aaronfagan.ca/img/misc/logo.svg?v=1578507328">
         </header>
         <div class="sr-container">
           <section class="container">
@@ -31,7 +37,6 @@
         <div id="error-message"></div>
       </div>
     </div>
-
 
     <script>
       var stripe = Stripe('pk_live_rQWTrxNUl442BfEyf0DoC7Fy00hIkiGnEu');
