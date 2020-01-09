@@ -5,7 +5,6 @@ $(document).ready(function() {
 	$('button.stripe').click(function(event) {
 		var str = window.location.href;
 		var domain = str.substring(0, str.lastIndexOf('/'));
-		alert(domain);
 	 	var stripeSku = $(this).attr('data-stripe-sku');
 	    var stripePlan = $(this).attr('data-stripe-plan');
 	    var items = stripeSku ? [{ sku: stripeSku, quantity: 1 }] : [{ plan: stripePlan, quantity: 1 }];
@@ -17,7 +16,7 @@ $(document).ready(function() {
 	});
 	var handleResult = function(result) {
 		if (result.error) {
-			var displayError = document.getElementById('error-message');
+			var displayError = document.getElementById('error');
 			displayError.textContent = result.error.message;
 		}
 	};
