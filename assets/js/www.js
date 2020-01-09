@@ -11,7 +11,7 @@ $(document).ready(function() {
 	    stripe.redirectToCheckout({
 			items: items,
 			successUrl: domain + '/success.html?session_id={CHECKOUT_SESSION_ID}',
-			cancelUrl: domain + '/canceled.html?session_id={CHECKOUT_SESSION_ID}'
+			cancelUrl: domain + '/cancel.html?session_id={CHECKOUT_SESSION_ID}'
 		}).then(handleResult);
 	});
 	var handleResult = function(result) {
