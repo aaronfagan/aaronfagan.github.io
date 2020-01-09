@@ -3,39 +3,36 @@
 $(document).ready(function() {
 /*---------------------------------------------------------------------------------------------*/
 
-var handleResult = function(result) {
-  if (result.error) {
-    var displayError = document.getElementById("error-message");
-    displayError.textContent = result.error.message;
-  }
-};
+	$('button.stripe').click(function(event) {
+	 	var stripeSku = $(this).attr("data-stripe-sku");
+	    var stripePlan = $(this).attr("data-stripe-plan");
+	    var items = stripeSku ? [{ sku: stripeSku, quantity: 1 }] : [{ plan: stripePlan, quantity: 1 }];
+	    stripe
+	      .redirectToCheckout({
+	        items: items,
+	        successUrl:
+	          DOMAIN + "/support/success.html?session_id={CHECKOUT_SESSION_ID}",
+	        cancelUrl:
+	          DOMAIN + "/support/canceled.html?session_id={CHECKOUT_SESSION_ID}"
+	      })
+	      .then(handleResult);
+	});
 
-document.querySelectorAll("button").forEach(function(button) {
-  button.addEventListener("click", function(e) {
-    var skuId = e.target.dataset.skuId;
-    var planId = e.target.dataset.planId;
-    var items = skuId
-      ? [{ sku: skuId, quantity: 1 }]
-      : [{ plan: planId, quantity: 1 }];
-    stripe
-      .redirectToCheckout({
-        items: items,
-        successUrl:
-          DOMAIN + "/support/success.html?session_id={CHECKOUT_SESSION_ID}",
-        cancelUrl:
-          DOMAIN + "/support/canceled.html?session_id={CHECKOUT_SESSION_ID}"
-      })
-      .then(handleResult);
-  });
-});
 
-var urlParams = new URLSearchParams(window.location.search);
+	var handleResult = function(result) {
+	  if (result.error) {
+	    var displayError = document.getElementById("error-message");
+	    displayError.textContent = result.error.message;
+	  }
+	};
 
-if (urlParams.has("session_id")) {
-  document.getElementById("session").textContent = urlParams.get(
-    "session_id"
-  );
-}
+	var urlParams = new URLSearchParams(window.location.search);
+
+	if (urlParams.has("session_id")) {
+	  document.getElementById("session").textContent = urlParams.get(
+	    "session_id"
+	  );
+	}
 
 
 /*---------------------------------------------------------------------------------------------*/
