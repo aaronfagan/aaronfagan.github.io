@@ -1,6 +1,4 @@
-
 var stripe = Stripe('pk_live_rQWTrxNUl442BfEyf0DoC7Fy00hIkiGnEu');
-
 /*---------------------------------------------------------------------------------------------*/
 // BEGIN DOCUMENT READY /////////////////////////////////////////////////////
 $(document).ready(function() {
