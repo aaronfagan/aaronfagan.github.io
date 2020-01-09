@@ -13,6 +13,17 @@ a i { margin:0 10px 0 0; }
 a:hover { color:#b90711; }
 #wrap { background:#FFF; width:100%; border-top:1px solid #FFF; border-bottom:1px solid #ccc; margin:0 auto; }
 .content { margin:0 auto; max-width:650px; padding:0 15px; }
+.table { width:100%; display:table; }
+.tr { display:table-row; }
+.tr:last-child a.link { margin:0; }
+.td, .th { display:table-cell; }
+.td:first-child { padding:0 10px 0 0; }
+.td:last-child { padding:0 0 0 10px; }
+.td p { margin-top:0px; padding-top:0px; }
+.td:only-of-type { padding:0; }
+.table.col2 .td, .modal .table.col2 .td { width:50%; }
+.table.col3 .td, .modal .table.col3 .td { width:33.3333%; }
+.table.col4 .td, .modal .table.col4 .td { width:25%; }
 .btn { display:table; height:45px; text-align:center; text-transform:uppercase; background:#770000; padding:0; margin:0; color:#fff; border:0; font-size:14px; line-height:14px; font-family: 'Open Sans'; border-radius:2px; cursor:pointer; transition:background-color .2s; -webkit-appearance:none; white-space:nowrap; }
 .btn span { display:table-cell; height:45px; vertical-align:middle; }
 .btn .icon { padding:0 15px; border-right:1px solid #fff; }
@@ -22,3 +33,8 @@ a:hover { color:#b90711; }
 .center { text-align:center; }
 .line { margin:15px 0; border-bottom:1px solid #ccc; }
 .spacer { height:15px; }
+
+/* RESPONSIVE - MOBILE - CONTENT /////////////////////////////*/
+@media screen and (max-width:660px) {
+	.table .td { display:block; width:100% !important; padding:0 !important; }
+}
