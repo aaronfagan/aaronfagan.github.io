@@ -6,6 +6,7 @@ var animateMenu = 		200;
 $(document).ready(function() {
 /*---------------------------------------------------------------------------------------------*/
 	$('button.stripe').click(function(event) {
+		$('#msg').slideUp(animateFast).empty();
 		var str = window.location.href;
 		var domain = str.substring(0, str.lastIndexOf('/'));
 	 	var stripeSku = $(this).attr('data-stripe-sku');
@@ -19,8 +20,7 @@ $(document).ready(function() {
 	});
 	var handleResult = function(result) {
 		if(result.error) {
-			$('#error').html('<p>An error occured. Please try again!</p>');
-			$('#error').slideDown(animateFast);
+			$('#msg').html('<div id="error">An error occured. Please try again!</div><div class="line"></div>').slideDown(animateFast);
 		}
 	};
 	var urlParams = new URLSearchParams(window.location.search);
