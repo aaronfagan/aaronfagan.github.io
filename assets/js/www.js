@@ -4,6 +4,8 @@ $(document).ready(function() {
 /*---------------------------------------------------------------------------------------------*/
 
 	$('button.stripe').click(function(event) {
+		var domain = window.location.href.substring(0, str.lastIndexOf("/"));
+		alert(domain);
 	 	var stripeSku = $(this).attr("data-stripe-sku");
 	    var stripePlan = $(this).attr("data-stripe-plan");
 	    var items = stripeSku ? [{ sku: stripeSku, quantity: 1 }] : [{ plan: stripePlan, quantity: 1 }];
@@ -11,9 +13,9 @@ $(document).ready(function() {
 	      .redirectToCheckout({
 	        items: items,
 	        successUrl:
-	          DOMAIN + "/support/success.html?session_id={CHECKOUT_SESSION_ID}",
+	          domain + "/success.html?session_id={CHECKOUT_SESSION_ID}",
 	        cancelUrl:
-	          DOMAIN + "/support/canceled.html?session_id={CHECKOUT_SESSION_ID}"
+	          domain + "/canceled.html?session_id={CHECKOUT_SESSION_ID}"
 	      })
 	      .then(handleResult);
 	});
