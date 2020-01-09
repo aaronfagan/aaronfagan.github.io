@@ -1,38 +1,46 @@
-var msgError = '<div id="error"><i class="fas fa-times"></i><div class="text"><p>Invalid email and/or password. Please try again.</p></div></div>';
-var animateSpeed = 300;
+
+var stripe = Stripe('pk_live_rQWTrxNUl442BfEyf0DoC7Fy00hIkiGnEu');
+
 /*---------------------------------------------------------------------------------------------*/
 // BEGIN DOCUMENT READY /////////////////////////////////////////////////////
 $(document).ready(function() {
 /*---------------------------------------------------------------------------------------------*/
-// Error
-	if(window.location.href.indexOf('fail=1') != -1 ) {
-	    $('.msg').html(msgError);
-	}
-// Show Message Box - Get Messages
-	if ($('.msg').find('#error').length ) {
-		$('.msg').slideDown(animateSpeed);
-	}
-// Remember Me
-	$('form#webmail').submit(function(event) {
-		sessionStorage.webmail_email = $('form#webmail input[name=user_name]').val().toLowerCase();
-		if ($('form#webmail input[name=remember]').is(':checked')) {
-			localStorage.webmail_email = $('form#webmail input[name=user_name]').val().toLowerCase();
-			localStorage.webmail_remember = $('form#webmail input[name=remember]').val();
-		} else {
-			localStorage.webmail_email = '';
-			localStorage.webmail_remember = '';
-		}
-	});
-	if (localStorage.webmail_remember && localStorage.webmail_remember != '') {
-		$('form#webmail input[name=user_name]').val(localStorage.webmail_email);
-		$('form#webmail input[name=remember]').attr('checked', 'checked');
-	} else {
-		$('form#webmail input[name=user_name]').val('');
-		$('form#webmail input[name=remember]').removeAttr('checked');
-	}
-	if (sessionStorage.webmail_email && sessionStorage.webmail_email != '') {
-		$('input[name=user_name]').val(sessionStorage.webmail_email);
-	}
+
+var handleResult = function(result) {
+  if (result.error) {
+    var displayError = document.getElementById("error-message");
+    displayError.textContent = result.error.message;
+  }
+};
+
+document.querySelectorAll("button").forEach(function(button) {
+  button.addEventListener("click", function(e) {
+    var skuId = e.target.dataset.skuId;
+    var planId = e.target.dataset.planId;
+    var items = skuId
+      ? [{ sku: skuId, quantity: 1 }]
+      : [{ plan: planId, quantity: 1 }];
+    stripe
+      .redirectToCheckout({
+        items: items,
+        successUrl:
+          DOMAIN + "/support/success.html?session_id={CHECKOUT_SESSION_ID}",
+        cancelUrl:
+          DOMAIN + "/support/canceled.html?session_id={CHECKOUT_SESSION_ID}"
+      })
+      .then(handleResult);
+  });
+});
+
+var urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.has("session_id")) {
+  document.getElementById("session").textContent = urlParams.get(
+    "session_id"
+  );
+}
+
+
 /*---------------------------------------------------------------------------------------------*/
 // END DOCUMENT READY
 });
