@@ -15,13 +15,14 @@ $(document).ready(function() {
 		}).then(handleResult);
 	});
 	var handleResult = function(result) {
-		if (result.error) {
+		if(result.error) {
 			var displayError = document.getElementById('error');
 			displayError.textContent = result.error.message;
+			alert(JSON.stringify(result.error));
 		}
 	};
 	var urlParams = new URLSearchParams(window.location.search);
-	if (urlParams.has('session_id')) {
+	if(urlParams.has('session_id')) {
 		document.getElementById('session').textContent = urlParams.get('session_id');
 	}
 /*---------------------------------------------------------------------------------------------*/
