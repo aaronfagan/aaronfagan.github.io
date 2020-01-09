@@ -1,3 +1,6 @@
+var animateFast =		300;
+var animateSlow =		1000;
+var animateMenu = 		200;
 /*---------------------------------------------------------------------------------------------*/
 // BEGIN DOCUMENT READY /////////////////////////////////////////////////////
 $(document).ready(function() {
@@ -16,9 +19,8 @@ $(document).ready(function() {
 	});
 	var handleResult = function(result) {
 		if(result.error) {
-			var displayError = document.getElementById('error');
-			displayError.textContent = result.error.message;
-			alert(JSON.stringify(result.error));
+			$('#error').html('<p>An error occured. Please try again!</p>');
+			$('#error').slideDown(animateFast);
 		}
 	};
 	var urlParams = new URLSearchParams(window.location.search);
