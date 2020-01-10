@@ -1,6 +1,6 @@
 repository:
-  name: sponsor.aaronfagan.ca
-  description: "Github Pages - Sponsor"
+  name: aaronfagan.github.io
+  description: "Github Pages"
   homepage: "https://sponsor.aaronfagan.ca/"
   default_branch: master
   private: false
