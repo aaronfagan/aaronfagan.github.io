@@ -2,7 +2,7 @@ repository:
   name: aaronfagan.github.io
   description: 'Github Pages for Aaron Fagan'
   homepage: 'https://aaronfagan.github.io/'
-  default_branch: 'master'
+  default_branch: 'main'
   private: false
   has_issues: true
   has_wiki: false
